@@ -1,0 +1,101 @@
+.main{
+  background-color: black;
+  padding-left: 50px;
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+.sub{
+  display: inline-block;
+padding-left: 50px;
+}
+.all{
+  background-image: url('Shoe/photo_2024-03-01_11-30-18.jpg');
+  background-size: cover; /* or contain, depending on your preference */
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or contain, depending on your preference */
+  z-index: -1;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .shopping-cart {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.products {
+  display: flex;
+  
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.product {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.product button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product button:hover {
+  background-color: #0056b3;
+}
+
+.cart {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.cart h2 {
+  margin-bottom: 10px;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart li {
+  margin-bottom: 5px;
+}
+.links{
+  margin: 300px;
+  color: red;
+} */
