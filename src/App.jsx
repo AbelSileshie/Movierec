@@ -1,5 +1,6 @@
 import React from 'react'
 import {  Routes, Route, NavLink } from 'react-router-dom';
+<<<<<<< HEAD
 import Test from './Component/Test'
 import HomePage from './Component/HomePage';
 import Navigtion from './Component/Navigtion';
@@ -43,6 +44,19 @@ const App = () => {
 
     </>
   )
+=======
+import Navbar from './Component/Header';
+import './App.css';
+import Hero from './Component/Hero';
+
+const App = () => {
+    return (
+        <>
+            <Navbar />
+            <Hero />
+        </>
+    )
+>>>>>>> 56731e1bb5ef990f53385bab9a801ff379c6d122
 }
 
 export default App
