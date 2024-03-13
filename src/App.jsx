@@ -2,9 +2,11 @@ import React from 'react'
 import {  Routes, Route, NavLink } from 'react-router-dom';
 import Test from './Component/Test'
 import HomePage from './Component/HomePage';
+import Navigtion from './Component/Navigtion';
+import Login from './Component/Login';
 const App = () => {
   return (
-    <div>
+    <>
    
       {/** if you implement BrowserRouter in main.jsx, it is not require to implement in this page.
        * if not yor code looks like this:-
@@ -26,19 +28,20 @@ const App = () => {
        *
         */}
     
-        <NavLink to='/' > Home Page</NavLink>
-<NavLink to='Test' ><p>Test</p></NavLink>
+        {/* <NavLink to='/' > Home Page</NavLink>
+<NavLink to='Test' ><p>Test</p></NavLink> */}
 
-
+      <Navigtion/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='Test' element={ <Test/>}/>
-
+        <Route path= 'Login' element={<Login/>}/>
+        
       </Routes>
    
       
 
-    </div>
+    </>
   )
 }
 
