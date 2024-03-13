@@ -1,13 +1,16 @@
 import React from 'react'
 import {  Routes, Route, NavLink } from 'react-router-dom';
-import Test from './Component/Test'
-import HomePage from './Component/HomePage';
+import Navbar from './Component/Header';
+import './App.css';
+import Hero from './Component/Hero';
+
 const App = () => {
-  return (
-    <>
-   
-    </>
-  )
+    return (
+        <>
+            <Navbar />
+            <Hero />
+        </>
+    )
 }
 
 export default App
