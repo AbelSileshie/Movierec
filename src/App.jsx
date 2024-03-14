@@ -6,12 +6,15 @@ import Hero from './Component/Hero';
 import { MovieCards} from './Component/MovieCards';
 
 
-const App = () => {
+const App = () => { 
     return (
         <>
             <Navbar />
             <Hero />
             
+
+
+
 
             <div className="flex justify-center shadow-md space-x-1">
                 <MovieCards />
