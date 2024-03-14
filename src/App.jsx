@@ -1,11 +1,12 @@
+import './App.css';
 import { useState } from 'react';
 
 import React from 'react'
 import {  Routes, Route, NavLink } from 'react-router-dom';
 import Navbar from './Component/Header';
-import './App.css';
+
 import Footer from './Component/Footer';
-import Login from './Component/Login';
+import Login from './Component/Login'
 
 import Fav from './Component/Fav';
 import HomePage from './Component/HomePage';
