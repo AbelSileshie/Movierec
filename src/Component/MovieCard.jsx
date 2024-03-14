@@ -1,8 +1,8 @@
 import React from 'react';
 
-function MovieCard({ movie }) {
+function MovieCard({ movie,onSelectMovie }) {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md">
+    <div  onClick={() => onSelectMovie(movie.id)} className="bg-white rounded-lg overflow-hidden shadow-md">
       <img className="w-full h-auto" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.title} />
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">{movie.title}</h3>
