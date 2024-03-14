@@ -16,9 +16,10 @@ const App = () => {
 
 export default App;
 
-// import React from 'react'
-// import { useState } from 'react'
-// import Ex from './Ex'
+
+
+
+
 // const App = () => {
 //   const [count,setCount]=useState(0)
 
