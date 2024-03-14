@@ -4,7 +4,6 @@ import React from 'react'
 import {  Routes, Route, NavLink } from 'react-router-dom';
 import Navbar from './Component/Header';
 import './App.css';
-import Hero from './Component/Hero';
 import Footer from './Component/Footer';
 import Login from './Component/Login';
 
@@ -67,7 +66,7 @@ const TVItemRemove=(nameToRemove)=>{
       <Route path='Family' element={<Family/>} />
       <Route path='Sci_Fi' element={<Sci_Fi/>} />
       </Routes>     
-    
+    <Footer />
         </>
     )
 }
