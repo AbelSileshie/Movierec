@@ -1,19 +1,14 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Avatar,
-} from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Typography, Avatar } from "@material-tailwind/react";
 import React from "react";
+import './MovieCard.css'
 
-export function MovieCard() {
+export function MovieCards() {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <Card
       shadow={false}
-      className="relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
+      className="relative grid h-[25rem] w-full max-w-[25rem] items-end justify-center overflow-hidden text-center"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -29,24 +24,23 @@ export function MovieCard() {
       >
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
       </CardHeader>
-      <CardBody className="relative py-14 px-6 md:px-12">
-        <Typography
-          variant="h2"
-          color="white"
-          className="mb-6 font-medium leading-[1.5]"
-        >
-          Movie Title 
-        </Typography>
-        <Typography variant="h5" className="mb-4 text-gray-400">
-          movie details...
-        </Typography>
-        
-        
-      </CardBody>
-      
+      {isHovered && (
+        <CardBody className="relative py-14 px-6 md:px-12">
+          <Typography
+            variant="h2"
+            color="white"
+            className="mb-6 font-medium leading-[1.5]"
+          >
+            Movie Title 
+          </Typography>
+          <Typography variant="h5" className="mb-4 text-gray-400">
+            movie details...
+          </Typography>
+        </CardBody>
+      )}
       <div className="space-x- mt-4">
         <button className="btn">
-          
+          {}
         </button>
       </div>
     </Card>

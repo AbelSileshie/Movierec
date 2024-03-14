@@ -3,7 +3,7 @@ import {  Routes, Route, NavLink } from 'react-router-dom';
 import Navbar from './Component/Header';
 import './App.css';
 import Hero from './Component/Hero';
-import { MovieCard} from './Component/MovieCard';
+import { MovieCards} from './Component/MovieCards';
 
 
 const App = () => {
@@ -14,9 +14,10 @@ const App = () => {
             
 
             <div className="flex justify-center shadow-md space-x-1">
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
+                <MovieCards />
+                <MovieCards />
+                <MovieCards />
+                <MovieCards />
             
             </div>
             
