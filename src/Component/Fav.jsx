@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header';
 
 const Fav = ({favorite,handleItemRemove,favoriteTV,TVItemRemove}) => {
     const handleRemoveClick = (title) => {
@@ -10,6 +11,7 @@ const Fav = ({favorite,handleItemRemove,favoriteTV,TVItemRemove}) => {
     }
   return (
     <div>
+    <Header/>  
         Fav
         {favorite.map((movie,index)=>(
             <div key={index}>
