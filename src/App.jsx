@@ -1,72 +1,20 @@
-import React from 'react'
-import {  Routes, Route, NavLink } from 'react-router-dom';
-import Navbar from './Component/Header';
-import './App.css';
-import Hero from './Component/Hero';
+import React from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
+import Header from "./Component/Header";
+import "./App.css";
+import Hero from "./Component/Hero";
+import Home from "./pages/Home";
 
 const App = () => {
-    return (
-        <>
-            <Navbar />
-            <Hero />
-        </>
-    )
-}
+  return (
+    <><Header/>
+      <Home />
+      <Hero />
+    </>
+  );
+};
 
-export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default App;
 
 // import React from 'react'
 // import { useState } from 'react'
@@ -85,12 +33,10 @@ export default App
 //     React.useEffect(() => {
 //       localStorage.setItem('search', search);
 //       }, [search])
-  
-
 
 //       const handleSearch = event => {
 //         setSearch(event.target.value);
-       
+
 //         };
 
 //   const stories = [
@@ -98,20 +44,19 @@ export default App
 //       title: "Introduction to Ethical Hacking",
 //     },
 //       {title: "John Doe",},
-    
 
 //     {
 //       title: "Security Vulnerabilities in IoT Devices",}
 //       ,{title: "Jane Smith"},
-      
+
 //     ]
 // const filteredStories=stories.filter((event)=>{
 // return event.title.toLowerCase().includes(search.toLowerCase())})
 
 //   return (
-       
+
 //     <div>
-//       <input type="text" 
+//       <input type="text"
 //       placeholder='search...'
 //       value={search}
 //       onChange={handleSearch}
@@ -131,17 +76,6 @@ export default App
 
 // export default App
 
-
-
-
-
-
-
-
-
-
-
-
 // import React from 'react'
 // import { useState } from 'react'
 
@@ -150,15 +84,13 @@ export default App
 // import { BrowserRouter,Routes,Route,NavLink } from 'react-router-dom'
 // const App = () => {
 
-
 //   const [info,setInfo]=useState([])
-  
+
 // const click= (event)=>{
 // event.preventDefault();
 // const updatedInfo=[...info,item]
 // setInfo(updatedInfo)
 // }
-
 
 //   return (
 //     <div>
@@ -180,33 +112,9 @@ export default App
 //       </BrowserRouter>
 
 //       </div>
-    
-    
+
 //     </div>
 //   )
 // }
 
 // export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
