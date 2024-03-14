@@ -20,8 +20,6 @@ export default App;
 
 
 
-// const App = () => {
-//   const [count,setCount]=useState(0)
 
 // const add =()=>{
 //   setCount(count+1)
