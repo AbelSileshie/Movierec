@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import Action from "./genere/Action";
 import {
   Navbar,
   Collapse,
@@ -19,7 +21,7 @@ import {
   XMarkIcon,
   PlayIcon,
   UserCircleIcon,
-  BookmarkSlashIcon
+  BookmarkIcon
 } from "@heroicons/react/24/outline";
 
  
@@ -60,7 +62,7 @@ const navListMenuItems = [
     icon: PlayIcon,
   },
   {
-    title: "Science Fiction",
+    title: "Sci_Fi",
     description: "",
     icon: PlayIcon,
   },
@@ -91,7 +93,7 @@ function NavListMenu() {
               color="white"
               className="flex items-center text-sm font-bold"
             >
-              {title}
+            <NavLink to={title}>{title}</NavLink>
             </Typography>
             <Typography
               variant="paragraph"
@@ -121,7 +123,7 @@ function NavListMenu() {
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
-              Gneres
+              Genres
               <ChevronDownIcon
                 strokeWidth={2.5}
                 className={`hidden h-3 w-3 transition-transform lg:block ${
@@ -160,20 +162,19 @@ function NavList() {
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4"><NavLink to="Popular">Popular</NavLink></ListItem>
       </Typography>
-      <NavListMenu />
-      <Typography
+          <Typography
         as="a"
         href="#"
         variant="small"
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-         Discover
-        </ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4">Trending</ListItem>
       </Typography>
+      <NavListMenu />
+      
     </List>
   );
 }
@@ -189,16 +190,16 @@ function Header() {
   }, []);
  
   return (
-    <Navbar className=" w-full bg-transparent">
-      <div className="flex flex-wrap items-center justify-between gap-y-4 text-white">
-      
+    <header className="fixed top-0 left-0  right-0 max-w-full z-10 bg-transparent no-white-border rounded-none">
+ <Navbar className="sticky top-0 z-10 h-max max-w-full  px-4 py-2 bg-transparent no-white-border rounded-none">
+   <div className="flex flex-wrap items-center justify-between gap-y-4 text-white bg-transparent no-white-border rounded-none">
         <Typography
           as="a"
-          href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 lg:ml-2"
         >
-          Movie-Rec
+                       <NavLink to="/">Movie-Rec</NavLink>
+
         </Typography>
         <div className="hidden lg:block">
           <NavList />
@@ -215,10 +216,10 @@ function Header() {
             }}
           />
           <Button variant="" size="xl">
-          <UserCircleIcon className="h-4 w-4 size-5" />
+          <NavLink to='Login'><UserCircleIcon className="h-4 w-4 size-5" /></NavLink>
           </Button>
           <Button variant="solid" size="xl">
-
+          <NavLink to='Fav'><BookmarkIcon className="h-4 w-4 size-5" /></NavLink>
           </Button>
         </div>
         <IconButton
@@ -244,6 +245,7 @@ function Header() {
         </div>
       </Collapse>
     </Navbar>
+    </header>
   );
 }
 export default Header;  
