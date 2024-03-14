@@ -171,7 +171,7 @@ function NavList() {
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Trending</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4"><NavLink to="Trending">Trending</NavLink></ListItem>
       </Typography>
       <NavListMenu />
       
@@ -240,7 +240,12 @@ function Header() {
       
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           <Button variant="" size="sm" fullWidth>
-            <UserCircleIcon className="h-4 w-4" />
+          <NavLink to='Login'><UserCircleIcon className="h-4 w-4 size-5" /></NavLink>  
+          </Button>
+        </div>
+         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+          <Button variant="" size="sm" fullWidth>
+          <NavLink to='Fav'><BookmarkIcon className="h-4 w-4 size-5" /></NavLink>
           </Button>
         </div>
       </Collapse>

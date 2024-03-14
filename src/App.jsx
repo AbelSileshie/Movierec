@@ -6,6 +6,7 @@ import {  Routes, Route, NavLink } from 'react-router-dom';
 import Navbar from './Component/Header';
 
 import Footer from './Component/Footer';
+
 import Login from './Component/Login'
 
 import Fav from './Component/Fav';
@@ -20,43 +21,18 @@ import Adventure from './Component/genere/Adventure';
 import Drama from './Component/genere/Drama';
 import Family from './Component/genere/Family';
 import Sci_Fi from './Component/genere/Sci_Fi';
+import Login from './Component/Login';
+import Trending from './Component/Trending';
 const App = () => {
-    const [favorite, setFavorite] = useState([]);
-  const [favoriteTV,setFavoriteTV]= useState([])
-  const ItemClick = (RESULT) => {
-    if(!favorite.some((item)=>item.title === RESULT.title)){
-    const updateItem = [...favorite, RESULT];
-    setFavorite(updateItem);
-  };
-}
-const TVClick= (RESULT) => {
-  if(!favoriteTV.some((item)=>item.name === RESULT.name)){
-  const updateItem = [...favoriteTV, RESULT];
-  setFavoriteTV(updateItem);
-};
-}
-  const handleItemRemove = (titleToRemove) => {
-    const updatedFavorite = favorite.filter((item) => item.title !== titleToRemove);
-    setFavorite(updatedFavorite);
-  };
-const TVItemRemove=(nameToRemove)=>{
-  const updatedFavorite = favoriteTV.filter((item)=>
-  item.name !==nameToRemove)
-  setFavoriteTV(updatedFavorite)
-}
     return (
         <>
             <main>
             <Navbar />
             </main>
       <Routes>
-      <Route path='/' element={<HomePage ItemClick={ItemClick} TVClick={TVClick} />} />
+      <Route path='/' element={<HomePage />} />
       <Route path='Popular' element={<Popular />}/>
-      <Route path='Login' element={<Login />} />
-        <Route path='Fav' element={<Fav favorite={favorite} 
-                                    handleItemRemove={handleItemRemove} 
-                                    favoriteTV={favoriteTV}  
-                                    TVItemRemove={TVItemRemove}/>} />
+      <Route path='Fav' element={<Fav/> } />
       <Route path='Action' element={<Action/>} />
       <Route path='Comedy' element={<Comedy/>} />
       <Route path='Horror' element={<Horror/>} />
@@ -66,6 +42,8 @@ const TVItemRemove=(nameToRemove)=>{
       <Route path='Drama' element={<Drama/>} />
       <Route path='Family' element={<Family/>} />
       <Route path='Sci_Fi' element={<Sci_Fi/>} />
+      <Route path='Login' element={<Login/>} />
+      <Route path='Trending' element={<Trending/>} />
       </Routes>     
     <Footer />
         </>
