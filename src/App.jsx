@@ -19,8 +19,6 @@ export default App;
 
 
 
-
-
 // const add =()=>{
 //   setCount(count+1)
 // }
