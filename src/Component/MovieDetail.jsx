@@ -26,11 +26,11 @@ export function MovieDetail() {
           <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
         </CardHeader>
         {isHovered && (
-          <CardBody className="absolute top-0 right-0 py-14 px-6 md:px-12 text-right "> {/* Adjust this line */}
+          <CardBody className="absolute top-0 right-0 py-14 px-6 md:px-12 text-right "> {}
             <Typography
               variant="h2"
               color="white"
-              className="mb-6 font-medium leading-[1.5] animate-slideIn" // Apply the animation class here
+              className="mb-6 font-medium leading-[1.5] animate-slideIn" 
             >
               Movie Title 
             </Typography>
