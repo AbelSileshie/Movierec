@@ -20,6 +20,7 @@ import Adventure from './Component/genere/Adventure';
 import Drama from './Component/genere/Drama';
 import Family from './Component/genere/Family';
 import Sci_Fi from './Component/genere/Sci_Fi';
+import Home from './pages/Home';
 const App = () => {
     const [favorite, setFavorite] = useState([]);
   const [favoriteTV,setFavoriteTV]= useState([])
@@ -50,7 +51,7 @@ const TVItemRemove=(nameToRemove)=>{
             <Navbar />
             </main>
       <Routes>
-      <Route path='/' element={<HomePage ItemClick={ItemClick} TVClick={TVClick} />} />
+      <Route path='/' element={<Home ItemClick={ItemClick} TVClick={TVClick} />} />
       <Route path='Popular' element={<Popular />}/>
       <Route path='Login' element={<Login />} />
         <Route path='Fav' element={<Fav favorite={favorite} 
