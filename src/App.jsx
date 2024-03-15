@@ -4,12 +4,14 @@ import Header from "./Component/Header";
 import "./App.css";
 import Hero from "./Component/Hero";
 import Home from "./pages/Home";
+import { MovieDetail } from "./Component/MovieDetail";
 
 const App = () => {
   return (
     <><Header/>
       <Home />
       <Hero />
+      <MovieDetail/>
     </>
   );
 };
