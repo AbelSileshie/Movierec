@@ -26,7 +26,7 @@ export function MovieDetail() {
           <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
         </CardHeader>
         {isHovered && (
-          <CardBody className="absolute top-0 right-0 py-14 px-6 md:px-12 text-right"> {/* Adjust this line */}
+          <CardBody className="absolute top-0 right-0 py-14 px-6 md:px-12 text-right "> {/* Adjust this line */}
             <Typography
               variant="h2"
               color="white"
@@ -47,7 +47,7 @@ export function MovieDetail() {
       </Card>
       {/* Promotion Card */}
       <div className="absolute bottom-0 left-0 p-2">
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="bg-black bg-opacity-30 rounded-lg shadow-md p-4 ">
           <Typography variant="subtitle1" className="text-gray-600">
             Special Promotion!
           </Typography>
