@@ -26,7 +26,14 @@ export default function MovieDetails({
     const watchedUserRating = watched.find(
       (movie) => movie.imdbID || movie.id === selectedId
     )?.userRating;
-
+    // const {
+    //   title,
+    //   overview,
+    //   release_date,
+    //   vote_average,
+    //   poster_path
+    // } = movie;
+  
     // function handleAdd() {
     //   const newWatchedMovie = {
     //     imdbID: selectedId,
@@ -38,55 +45,25 @@ export default function MovieDetails({
     //     userRating,
     //     countRatingDecisions: countRef.current,
     //   };
-
+  
     //   onAddWatched(newWatchedMovie);
     //   onCloseMovie();
     // }
-    let title2, title,
-      year,
-      poster,
-      runtime,
+    const {
+      Title: title,
+      Year: year,
+      Poster: poster,
+      Runtime: runtime,
       imdbRating,
-      plot,
-      released,
-      actors,
-      director,
-      genre;
+      Plot: plot,
+      Released: released,
+      Actors: actors,
+      Director: director,
+      Genre: genre,
+    } = movie;
+    const isTop = imdbRating > 8;
+    console.log(isTop);
 
-    if (typeof selectedId === "string" && selectedId.startsWith("tt")) {
-      const {
-        Title,
-        Year,
-        Poster,
-        Runtime,
-        imdbRating: rating,
-        Plot,
-        Released,
-        Actors,
-        Director,
-        Genre,
-      } = movie;
-
-      title = Title;
-      year = Year;
-      poster = Poster;
-      runtime = Runtime;
-      imdbRating = rating;
-      plot = Plot;
-      released = Released;
-      actors = Actors;
-      director = Director;
-      genre = Genre;
-    } else if (typeof selectedId === "number") {
-      const { title, overview, release_date, vote_average, poster_path } =
-        movie;
-      title2 = title;
-      plot = overview;
-      released = release_date;
-      imdbRating = vote_average;
-      poster = `https://image.tmdb.org/t/p/w300/${poster_path}`;
-    } else {
-    }
     function handleAdd() {
       const newWatchedMovie = {
         imdbID: selectedId,
@@ -124,13 +101,13 @@ export default function MovieDetails({
       async function fetchMovieDetails() {
         setIsLoading(true);
         try {
-          if (typeof selectedId === "string" && selectedId.startsWith("tt")) {
+          if (typeof selectedId === 'string' && selectedId.startsWith('tt')) { // Check if IMDb ID
             const res = await fetch(
               `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
             );
             const data = await res.json();
             setMovie(data);
-          } else if (typeof selectedId === "number") {
+          } else if (typeof selectedId === 'number') { // Check if TMDB ID
             const res = await fetch(
               `https://api.themoviedb.org/3/movie/${selectedId}?api_key=${key}`
             );
@@ -143,13 +120,14 @@ export default function MovieDetails({
           setIsLoading(false);
         }
       }
-
+    
       fetchMovieDetails();
-
+    
       return () => {
         setIsLoading(false);
       };
     }, [selectedId]);
+    
 
     useEffect(
       function () {
@@ -175,8 +153,7 @@ export default function MovieDetails({
               </button>
               <img src={poster} alt={`Poster of ${movie} movie`} />
               <div className="details-overview">
-                {console.log("tit", title)}
-                <h2>{title||title2}</h2>
+                <h2>{title}</h2>
                 <p>
                   {released} &bull; {runtime}
                 </p>
