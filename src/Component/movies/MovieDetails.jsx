@@ -26,7 +26,29 @@ export default function MovieDetails({
     const watchedUserRating = watched.find(
       (movie) => movie.imdbID || movie.id === selectedId
     )?.userRating;
-
+    // const {
+    //   title,
+    //   overview,
+    //   release_date,
+    //   vote_average,
+    //   poster_path
+    // } = movie;
+  
+    // function handleAdd() {
+    //   const newWatchedMovie = {
+    //     imdbID: selectedId,
+    //     title,
+    //     year: release_date ? new Date(release_date).getFullYear() : "",
+    //     poster: `https://image.tmdb.org/t/p/w300/${poster_path}`,
+    //     imdbRating: Number(vote_average),
+    //     runtime: "", // Fill this if available from TMDB
+    //     userRating,
+    //     countRatingDecisions: countRef.current,
+    //   };
+  
+    //   onAddWatched(newWatchedMovie);
+    //   onCloseMovie();
+    // }
     const {
       Title: title,
       Year: year,
@@ -75,39 +97,37 @@ export default function MovieDetails({
       [onCloseMovie]
     );
 
-    useEffect(
-      function () {
-        async function getDetailsOmdb() {
-          setIsLoading(true);
-
-          const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
-          );
-          const data = await res.json();
-          setMovie(data);
-          console.log("data", data);
-
+    useEffect(() => {
+      async function fetchMovieDetails() {
+        setIsLoading(true);
+        try {
+          if (typeof selectedId === 'string' && selectedId.startsWith('tt')) { // Check if IMDb ID
+            const res = await fetch(
+              `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+            );
+            const data = await res.json();
+            setMovie(data);
+          } else if (typeof selectedId === 'number') { // Check if TMDB ID
+            const res = await fetch(
+              `https://api.themoviedb.org/3/movie/${selectedId}?api_key=${key}`
+            );
+            const data = await res.json();
+            setMovie(data);
+          }
+        } catch (error) {
+          console.error("Error fetching movie details:", error);
+        } finally {
           setIsLoading(false);
         }
-        async function getDetailsTmdb() {
-          setIsLoading(true);
-          const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${selectedId}?api_key=${key}`
-          );
-          const data = await res.json();
-          setMovie(data);
-          setIsLoading(false);
-        }
-        if (typeof selectedId === "number") {
-          getDetailsTmdb();
-          return;
-        }
-        getDetailsOmdb();
-
-      },
-
-      [selectedId]
-    );
+      }
+    
+      fetchMovieDetails();
+    
+      return () => {
+        setIsLoading(false);
+      };
+    }, [selectedId]);
+    
 
     useEffect(
       function () {
