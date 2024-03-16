@@ -1,0 +1,27 @@
+.carousel {
+    position: relative;
+    width: 1700px;
+    height: 950px; /* Adjust based on your needs */
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+   object-fit: cover;
+    /* overflow: auto; */
+    background-attachment: fixed;
+    
+
+    
+   }
+   
+   .carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+   }
+   
+   .carousel-item.active {
+    opacity: 1;
+   }
+   

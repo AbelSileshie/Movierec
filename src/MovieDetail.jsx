@@ -4,7 +4,7 @@ import './MovieDetail.css'
 
 export function MovieDetail() {
   const [isHovered, setIsHovered] = React.useState(false);
-
+   console.log("MovieDetail");
   return (
     <div className="relative">
       <Card
