@@ -13,7 +13,7 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  Input
+  Input,
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
@@ -21,10 +21,9 @@ import {
   XMarkIcon,
   PlayIcon,
   UserCircleIcon,
-  BookmarkIcon
+  BookmarkIcon,
 } from "@heroicons/react/24/outline";
 
- 
 const navListMenuItems = [
   {
     title: "Action",
@@ -72,13 +71,13 @@ const navListMenuItems = [
     icon: PlayIcon,
   },
 ];
- 
+
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const renderItems = navListMenuItems.map(
     ({ icon, title, description }, key) => (
-      <a href="#" key={key}> 
+      <a href="#" key={key}>
         <MenuItem className="flex relative items-center gap-3 rounded-lg">
           <div className="flex items-center justify-center rounded-lg relative">
             {" "}
@@ -93,7 +92,7 @@ function NavListMenu() {
               color="white"
               className="flex items-center text-sm font-bold"
             >
-            <NavLink to={title}>{title}</NavLink>
+              <NavLink to={title}>{title}</NavLink>
             </Typography>
             <Typography
               variant="paragraph"
@@ -104,9 +103,9 @@ function NavListMenu() {
           </div>
         </MenuItem>
       </a>
-    ),
+    )
   );
- 
+
   return (
     <React.Fragment>
       <Menu
@@ -151,7 +150,7 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
- 
+
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
@@ -162,95 +161,106 @@ function NavList() {
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4"><NavLink to="Popular">Popular</NavLink></ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4">
+          <NavLink to="Popular">Popular</NavLink>
+        </ListItem>
       </Typography>
-          <Typography
+      <Typography
         as="a"
         href="#"
         variant="small"
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4"><NavLink to="Trending">Trending</NavLink></ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4">
+          <NavLink to="Trending">Trending</NavLink>
+        </ListItem>
       </Typography>
       <NavListMenu />
-      
     </List>
   );
 }
- 
-function Header() {
+
+function Header({ query, setQuery }) {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
+      () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
- 
+
   return (
     <header className="fixed top-0 left-0  right-0 max-w-full z-10 bg-transparent no-white-border rounded-none">
- <Navbar className="sticky top-0 z-10 h-max max-w-full  px-4 py-2 bg-transparent no-white-border rounded-none">
-   <div className="flex flex-wrap items-center justify-between gap-y-4 text-white bg-transparent no-white-border rounded-none">
-        <Typography
-          as="a"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-        >
-                       <NavLink to="/">Movie-Rec</NavLink>
+      <Navbar className="sticky top-0 z-10 h-max max-w-full  px-4 py-2 bg-transparent no-white-border rounded-none">
+        <div className="flex flex-wrap items-center justify-between gap-y-4 text-white bg-transparent no-white-border rounded-none">
+          <Typography
+            as="a"
+            variant="h6"
+            className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          >
+            <NavLink to="/">Movie-Rec</NavLink>
+          </Typography>
+          <div className="hidden lg:block">
+            <NavList />
+          </div>
 
-        </Typography>
-        <div className="hidden lg:block">
-          <NavList />
-        </div>
-        
-        <div className="hidden gap-2 lg:flex">
-        <Input
-            type="search"
+          <div className="hidden gap-2 lg:flex">
+            <Input
+              type="search"
+              color="white"
+              label="Type here..."
+              className="pr-20"
+              onChange={(e) => setQuery(e.target.value)}
+              containerProps={{
+                className: "min-w-[288px]",
+              }}
+            />
+            <Button variant="" size="xl">
+              <NavLink to="Login">
+                <UserCircleIcon className="h-4 w-4 size-5" />
+              </NavLink>
+            </Button>
+            <Button variant="solid" size="xl">
+              <NavLink to="Fav">
+                <BookmarkIcon className="h-4 w-4 size-5" />
+              </NavLink>
+            </Button>
+          </div>
+          <IconButton
+            variant="text"
             color="white"
-            label="Type here..."
-            className="pr-20"
-            containerProps={{
-              className: "min-w-[288px]",
-            }}
-          />
-          <Button variant="" size="xl">
-          <NavLink to='Login'><UserCircleIcon className="h-4 w-4 size-5" /></NavLink>
-          </Button>
-          <Button variant="solid" size="xl">
-          <NavLink to='Fav'><BookmarkIcon className="h-4 w-4 size-5" /></NavLink>
-          </Button>
+            className="lg:hidden"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
+          </IconButton>
         </div>
-        <IconButton
-          variant="text"
-          color="white"
-          className="lg:hidden"
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
-      </div>
-      <Collapse open={openNav}>
-        <NavList />
-      
-        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="" size="sm" fullWidth>
-          <NavLink to='Login'><UserCircleIcon className="h-4 w-4 size-5" /></NavLink>  
-          </Button>
-        </div>
-         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="" size="sm" fullWidth>
-          <NavLink to='Fav'><BookmarkIcon className="h-4 w-4 size-5" /></NavLink>
-          </Button>
-        </div>
-      </Collapse>
-    </Navbar>
+        <Collapse open={openNav}>
+          <NavList />
+
+          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+            <Button variant="" size="sm" fullWidth>
+              <NavLink to="Login">
+                <UserCircleIcon className="h-4 w-4 size-5" />
+              </NavLink>
+            </Button>
+          </div>
+          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+            <Button variant="" size="sm" fullWidth>
+              <NavLink to="Fav">
+                <BookmarkIcon className="h-4 w-4 size-5" />
+              </NavLink>
+            </Button>
+          </div>
+        </Collapse>
+      </Navbar>
     </header>
   );
 }
-export default Header;  
+export default Header;

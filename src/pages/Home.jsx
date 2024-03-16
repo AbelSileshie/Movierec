@@ -15,6 +15,7 @@ import Loader from "../Component/common/Loader";
 import ErrorMessage from "../Component/common/ErrorMessage";
 import WatchedSummary from "../Component/watched/WatchedSummary";
 import WatchedMoviesList from "../Component/watched/WatchedMoviesList";
+import Header from "../Component/Header";
 const KEY = "c39fabd7";
 
 export default function Home() {
@@ -29,7 +30,9 @@ export default function Home() {
     const storedValue = localStorage.getItem("watched");
     return JSON.parse(storedValue) || [];
   });
-  console.log("id",selectedId);
+  console.log("MOVVVVV", movies);
+
+  console.log("id", selectedId);
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
@@ -125,8 +128,8 @@ export default function Home() {
 
   return (
     <div>
-        <NavBar>
-        <Search query={query} setQuery={setQuery} />
+      <NavBar>
+        <Header query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
@@ -163,8 +166,12 @@ export default function Home() {
         </h2>{" "}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
           {topRated.map((movie) => (
-            <MovieCard key={movie.id} selectedId={selectedId}
-            onSelectMovie={handleSelectMovie} movie={movie} />
+            <MovieCard
+              key={movie.id}
+              selectedId={selectedId}
+              onSelectMovie={handleSelectMovie}
+              movie={movie}
+            />
           ))}
         </div>
       </div>
@@ -174,8 +181,12 @@ export default function Home() {
         </h2>{" "}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
           {tvShows.map((movie) => (
-            <MovieCard key={movie.id} selectedId={selectedId}
-            onSelectMovie={handleSelectMovie} movie={movie} />
+            <MovieCard
+              key={movie.id}
+              selectedId={selectedId}
+              onSelectMovie={handleSelectMovie}
+              movie={movie}
+            />
           ))}
         </div>
       </div>

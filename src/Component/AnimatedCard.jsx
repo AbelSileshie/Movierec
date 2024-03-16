@@ -1,8 +1,9 @@
 import React from "react";
-{/*import Photo1 from '../assets/pic/photo1.jpeg'
+import Photo1 from '../assets/pic/photo1.jpeg';
 import Photo2 from "../assets/pic/photo2.jpeg";
 import Photo3 from "../assets/pic/photo3.jpeg";
-*/}import { Slide, Fade } from "react-awesome-reveal";
+
+import { Slide, Fade } from "react-awesome-reveal";
 
 const CardsData = [
   {
@@ -35,7 +36,7 @@ const AnimatedCard = () => {
     <div className="w-full">
 
       {/* cards section */}
-      <div className="grid grid-cols-0 sm:grid-cols-2 md:grid-cols-3 place-items-center m-1 p-2">
+      <div className="grid grid-cols-0 sm:grid-cols-2 md:grid-cols-6 place-items-center mt-20 ml-2 mr-">
         {CardsData.map(({ id, img, title, desc }) => {
           return (
             <div

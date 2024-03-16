@@ -22,7 +22,6 @@ import Drama from './Component/genere/Drama';
 import Family from './Component/genere/Family';
 import Sci_Fi from './Component/genere/Sci_Fi';
 import Home from './pages/Home';
-import Login from './Component/Login';
 import Trending from './Component/Trending';
 const App = () => {
     return (
@@ -31,8 +30,7 @@ const App = () => {
             <Navbar />
             </main>
       <Routes>
-      <Route path='/' element={<HomePage ItemClick={ItemClick} TVClick={TVClick} />} />
-      <Route path='/' element={<HomePage />} />
+      <Route path='/' element={<Home />} />
       <Route path='Popular' element={<Popular />}/>
       <Route path='Fav' element={<Fav/> } />
       <Route path='Action' element={<Action/>} />
@@ -52,4 +50,4 @@ const App = () => {
     )
 }
 
-export default App
+export default App; 
