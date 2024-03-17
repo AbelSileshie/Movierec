@@ -174,6 +174,7 @@ function NavList() {
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           Trending
+          <NavLink to="Trending">Trending</NavLink>
         </ListItem>
       </Typography>
       <NavListMenu />
@@ -182,6 +183,7 @@ function NavList() {
 }
 
 function Header({setWatchedList, query, setQuery }) {
+function Header({ query, setQuery }) {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -226,6 +228,9 @@ function Header({setWatchedList, query, setQuery }) {
               <Link to={`watched`} onClick={()=>setWatchedList((watch)=>!watch)}>
                 <BookmarkIcon className="h-4 w-4 size-5" />
               </Link>
+              <NavLink to="Fav">
+                <BookmarkIcon className="h-4 w-4 size-5" />
+              </NavLink>
             </Button>
           </div>
           <IconButton
@@ -247,6 +252,16 @@ function Header({setWatchedList, query, setQuery }) {
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
             <Button variant="" size="sm" fullWidth>
               <UserCircleIcon className="h-4 w-4" />
+              <NavLink to="Login">
+                <UserCircleIcon className="h-4 w-4 size-5" />
+              </NavLink>
+            </Button>
+          </div>
+          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+            <Button variant="" size="sm" fullWidth>
+              <NavLink to="Fav">
+                <BookmarkIcon className="h-4 w-4 size-5" />
+              </NavLink>
             </Button>
           </div>
         </Collapse>
