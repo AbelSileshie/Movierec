@@ -4,9 +4,7 @@ import MovieCard from "../Component/MovieCard";
 const key = "cd03c49615cd326a66da1a5a7b3cc69e";
 
 import { average } from "../utilities";
-import NavBar from "../Component/common/NavBar";
-import Search from "../Component/common/Search";
-import NumResults from "../Component/common/NumResults";
+
 import Main from "../Component/common/Main";
 import Box from "../Component/common/Box";
 import MovieList from "../Component/movies/MovieList";
@@ -15,9 +13,10 @@ import Loader from "../Component/common/Loader";
 import ErrorMessage from "../Component/common/ErrorMessage";
 import WatchedSummary from "../Component/watched/WatchedSummary";
 import WatchedMoviesList from "../Component/watched/WatchedMoviesList";
+import Header from "../Component/Header";
 const KEY = "c39fabd7";
 
-export default function Home() {
+export default function Home({watchedList,watched,setWatched}) {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,11 +24,8 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [tvShows, setTVShows] = useState([]);
-  const [watched, setWatched] = useState(() => {
-    const storedValue = localStorage.getItem("watched");
-    return JSON.parse(storedValue) || [];
-  });
-  console.log("id",selectedId);
+   
+  console.log("id", selectedId);
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
@@ -42,9 +38,7 @@ export default function Home() {
     setWatched((watched) => [...watched, movie]);
   }
 
-  function handleDeleteWatched(id) {
-    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  }
+ 
 
   useEffect(
     function () {
@@ -52,6 +46,16 @@ export default function Home() {
     },
     [watched]
   );
+
+  // <Box>
+  //         {selectedId ? (
+  //
+  //         ) : (
+  //           <>
+             
+  //           </>
+  //         )}
+  //       </Box>
 
   useEffect(
     function () {
@@ -123,62 +127,61 @@ export default function Home() {
     getPopularTVShows();
   }, []);
 
-  return (
-    <div>
-        <NavBar>
-        <Search query={query} setQuery={setQuery} />
-        <NumResults movies={movies} />
-      </NavBar>
-      <Main>
-        <Box>
-          {isLoading && <Loader />}
-          {!isLoading && !error && (
-            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
-          )}
-          {error && <ErrorMessage message={error} />}
-        </Box>
+  if (selectedId) {
+    return (
+      <MovieDetails
+        selectedId={selectedId}
+        onCloseMovie={handleCloseMovie}
+        onAddWatched={handleAddWatched}
+        watched={watched}
+      />
+    );
+  } else {
+    return (
+      <Box>
+         <Header query={query} setQuery={setQuery} />
 
-        <Box>
-          {selectedId ? (
-            <MovieDetails
-              selectedId={selectedId}
-              onCloseMovie={handleCloseMovie}
-              onAddWatched={handleAddWatched}
-              watched={watched}
-            />
-          ) : (
-            <>
-              <WatchedSummary watched={watched} />
-              <WatchedMoviesList
-                watched={watched}
-                onDeleteWatched={handleDeleteWatched}
+        
+        <Main>
+          <Box>
+            {isLoading && <Loader />}
+            {!isLoading && !error && (
+              <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+            )}
+            {error && <ErrorMessage message={error} />}
+          </Box>
+        </Main>
+        <div className="container mx-auto px-4 py-8">
+          <h2 className="text-3xl font-semibold mb-4 text-white">
+            Top Rated Movies
+          </h2>{" "}
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+            {topRated.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                selectedId={selectedId}
+                onSelectMovie={handleSelectMovie}
+                movie={movie}
               />
-            </>
-          )}
-        </Box>
-      </Main>
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-semibold mb-4 text-white">
-          Top Rated Movies
-        </h2>{" "}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
-          {topRated.map((movie) => (
-            <MovieCard key={movie.id} selectedId={selectedId}
-            onSelectMovie={handleSelectMovie} movie={movie} />
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-semibold mb-4 text-white">
-          Popular TV Shows
-        </h2>{" "}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
-          {tvShows.map((movie) => (
-            <MovieCard key={movie.id} selectedId={selectedId}
-            onSelectMovie={handleSelectMovie} movie={movie} />
-          ))}
+        <div className="container mx-auto px-4 py-8">
+          <h2 className="text-3xl font-semibold mb-4 text-white">
+            Popular TV Shows
+          </h2>{" "}
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+            {tvShows.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                selectedId={selectedId}
+                onSelectMovie={handleSelectMovie}
+                movie={movie}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
-  );
+      </Box>
+    );
+  }
 }
