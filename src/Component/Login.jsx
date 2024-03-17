@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform login logic here
     console.log("Email:", email);
     console.log("Password:", password);
   };
@@ -93,7 +92,6 @@ const Login = () => {
           </p>
           <button  onClick={handleShowSignUp}
             className="bg-blue-500 hover:bg-blue-700 text-white  font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline"
-            // type="submit"
             href="#"
           >
             Sign up
