@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import { Fade, Slide } from 'react-awesome-reveal';
 const Drama = () => {
   const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,24 +22,43 @@ const getMovies = () => {
       setLoading(false);
     });
 }
-  return (
-    <div style={{ marginTop: '500px' }}>
-    
+return (
+  <div style={{ marginTop: '500px' }}>
     {loading ? (
-      <p style={{marginTop:'500px' ,marginLeft:'800px' ,fontSize: '80px', color:'red'}}>Loading...</p>
+      <p style={{ marginTop: '500px', marginLeft: '800px', fontSize: '80px', color: 'red' }}>Loading...</p>
     ) : (
-      movieList.map((movie,index) => (
-        movie.poster_path && (
-          <div key={index} style={{ display: "inline-block" }}>
-           <div style={{margin:'30px'}}> <img style={{ width: "300px", height: "250px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`Movie ${index}`} />
-           </div>
-           
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 place-items-center m-1 p-2">
+        {movieList.map((movie, index) => (
+          movie.poster_path && (
+            <div key={index} className="text-white shadow-md rounded-lg overflow-hidden relative group">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt=""
+                className="w-full max-w-[300px] h-[300px] rounded-lg"
+              />
+              <div className="absolute left-0 top-[-100%] opacity-0 group-hover:opacity-100 group-hover:top-[0] p-4 w-full h-full bg-black/60 group-hover:backdrop-blur-sm duration-500">
+                <div className="space-y-3">
+                  <Slide cascade>
+                    <h1 className="text-xl font-bold">{movie.title}</h1>
+                    <Fade cascade damping={0.02}>
+                      <p>{movie.overview}</p>
+                    </Fade>
+                    <div className="">
+                      <button className="btn mt-auto rounded-lg hover:bg-black/20 duration-300">
+                        Read More
+                      </button>
+                    </div>
+                  </Slide>
+                </div>
+              </div>
             </div>
-        ))
-      )
+          )
+        ))}
+      </div>
     )}
   </div>
-  )
+);
+ 
 }
 
 export default Drama
