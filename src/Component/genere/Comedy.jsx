@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 const Comedy = () => {
   const [movieList, setMovieList] = useState([]);
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getMovies();
@@ -14,19 +14,21 @@ const Comedy = () => {
       .then(res => res.json())
       .then(json => {
         setMovieList(json.results);
-     
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching movies:', error);
-        
+        setLoading(false);
       });
   }
 
   return (
     <div style={{ marginTop: '500px' }}>
     
-      {
-        movieList.map((movie,index) => (
+      {loading ? (
+      <p style={{marginTop:'500px' ,marginLeft:'800px' ,fontSize: '80px', color:'red'}}>Loading...</p>
+    ) :
+        (movieList.map((movie,index) => (
           movie.poster_path && (
             <div key={index} style={{ display: "inline-block" }}>
              <div style={{margin:'30px'}}> <img style={{ width: "300px", height: "250px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`Movie ${index}`} />
@@ -34,7 +36,7 @@ const Comedy = () => {
            
             </div>
           )
-        )
+        ))
       )}
     </div>
   );

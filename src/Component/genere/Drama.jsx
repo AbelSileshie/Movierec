@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 
 const Drama = () => {
   const [movieList, setMovieList] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getMovies();
    
@@ -14,17 +15,19 @@ const getMovies = () => {
     .then(res => res.json())
     .then(json => {
       setMovieList(json.results);
-   
+      setLoading(false);
     })
     .catch(error => {
       console.error('Error fetching movies:', error);
-   
+      setLoading(false);
     });
 }
   return (
     <div style={{ marginTop: '500px' }}>
     
-    {
+    {loading ? (
+      <p style={{marginTop:'500px' ,marginLeft:'800px' ,fontSize: '80px', color:'red'}}>Loading...</p>
+    ) : (
       movieList.map((movie,index) => (
         movie.poster_path && (
           <div key={index} style={{ display: "inline-block" }}>
@@ -32,7 +35,7 @@ const getMovies = () => {
            </div>
            
             </div>
-        )
+        ))
       )
     )}
   </div>
