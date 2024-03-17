@@ -3,7 +3,6 @@ import React from "react";
 import { Fade, Slide } from "react-awesome-reveal";
 
 export default function Movie({ movie, onSelectMovie }) {
-  console.log(movie);
   return (
     <div
       onClick={() => onSelectMovie(movie.imdbID)}

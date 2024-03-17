@@ -1,15 +1,10 @@
-import React from 'react'
-import AnimatedCard from '../../Component/AnimatedCard'
+import React from "react";
 const Action = () => {
   return (
     <div>
-    <h1 className=' text-white'>
-
-    </h1>
-    <AnimatedCard/>
-    
+      <h1 className=" text-white"></h1>
     </div>
-  )
-}
+  );
+};
 
-export default Action
+export default Action;

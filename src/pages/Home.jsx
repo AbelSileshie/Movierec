@@ -4,9 +4,6 @@ import MovieCard from "../Component/MovieCard";
 const key = "cd03c49615cd326a66da1a5a7b3cc69e";
 
 import { average } from "../utilities";
-import NavBar from "../Component/common/NavBar";
-import Search from "../Component/common/Search";
-import NumResults from "../Component/common/NumResults";
 import Main from "../Component/common/Main";
 import Box from "../Component/common/Box";
 import MovieList from "../Component/movies/MovieList";
@@ -128,10 +125,8 @@ export default function Home() {
 
   return (
     <div>
-      <NavBar>
-        <Header query={query} setQuery={setQuery} />
-        <NumResults movies={movies} />
-      </NavBar>
+      <Header query={query} setQuery={setQuery} />
+
       <Main>
         <Box>
           {isLoading && <Loader />}

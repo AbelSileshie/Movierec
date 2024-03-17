@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Adventure = () => {
-  return (
-    <div>
-        
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Adventure
+export default Adventure;
