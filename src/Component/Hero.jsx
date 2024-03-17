@@ -8,7 +8,7 @@ const Hero = ({ move }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((currentIndex + 1) % move.length);
-    }, 5000); // Change slide every 2 seconds
+    }, 2000); // Change slide every 2 seconds
 
     return () => clearInterval(interval);
   }, [currentIndex, move.length]);
@@ -27,9 +27,10 @@ const Hero = ({ move }) => {
             alt={`Movie ${index}`}
           />
           <div className="absolute bottom-10 left-2">
-            <h1 className="text-white text-2xl text">
+            <h1   className="text-white text-2xl" > 
               {movie.title} ({movie.release_date.substring(0, 4)})
             </h1>
+            
           </div>
           <div className="absolute top-12 left-2">
             <CircularProgress
