@@ -71,7 +71,7 @@ const App = () => {
           }
         />
         <Route path="Popular" element={<Popular />} />
-        <Route path="watched" element={<Watched watched={watched} />} />
+      <Route path="watched" element={<Watched watched={watched} setWatched={setWatched} />} />
         <Route path="Login" element={<Login />} />
         <Route
           path="Fav"
