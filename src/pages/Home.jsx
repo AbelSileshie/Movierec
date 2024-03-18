@@ -24,13 +24,6 @@ export default function Home({watchedList,watched,setWatched}) {
   const [selectedId, setSelectedId] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [tvShows, setTVShows] = useState([]);
-
-  const [watched, setWatched] = useState(() => {
-    const storedValue = localStorage.getItem("watched");
-    return JSON.parse(storedValue) || [];
-  });
-  console.log("MOVVVVV", movies);
-
   console.log("id", selectedId);
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -186,66 +179,7 @@ export default function Home({watchedList,watched,setWatched}) {
               />
             ))}
           </div>
-  return (
-    <div>
-      <Header query={query} setQuery={setQuery} />
 
-      <Main>
-        <Box>
-          {isLoading && <Loader />}
-          {!isLoading && !error && (
-            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
-          )}
-          {error && <ErrorMessage message={error} />}
-        </Box>
-
-        <Box>
-          {selectedId ? (
-            <MovieDetails
-              selectedId={selectedId}
-              onCloseMovie={handleCloseMovie}
-              onAddWatched={handleAddWatched}
-              watched={watched}
-            />
-          ) : (
-            <>
-              <WatchedSummary watched={watched} />
-              <WatchedMoviesList
-                watched={watched}
-                onDeleteWatched={handleDeleteWatched}
-              />
-            </>
-          )}
-        </Box>
-      </Main>
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-semibold mb-4 text-white">
-          Top Rated Movies
-        </h2>{" "}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
-          {topRated.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              selectedId={selectedId}
-              onSelectMovie={handleSelectMovie}
-              movie={movie}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-semibold mb-4 text-white">
-          Popular TV Shows
-        </h2>{" "}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
-          {tvShows.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              selectedId={selectedId}
-              onSelectMovie={handleSelectMovie}
-              movie={movie}
-            />
-          ))}
         </div>
       </Box>
     );
