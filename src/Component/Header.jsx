@@ -181,7 +181,7 @@ function NavList() {
   );
 }
 
-function Header({setWatchedList, query, setQuery }) {
+function Header({ setWatchedList, query, setQuery }) {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -223,7 +223,10 @@ function Header({setWatchedList, query, setQuery }) {
               </NavLink>
             </Button>
             <Button variant="solid" size="xl">
-              <Link to={`watched`} onClick={()=>setWatchedList((watch)=>!watch)}>
+              <Link
+                to={`watched`}
+                onClick={() => setWatchedList((watch) => !watch)}
+              >
                 <BookmarkIcon className="h-4 w-4 size-5" />
               </Link>
             </Button>
