@@ -24,7 +24,6 @@ export default function Home({watchedList,watched,setWatched}) {
   const [selectedId, setSelectedId] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [tvShows, setTVShows] = useState([]);
-   
   console.log("id", selectedId);
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -180,6 +179,7 @@ export default function Home({watchedList,watched,setWatched}) {
               />
             ))}
           </div>
+
         </div>
       </Box>
     );

@@ -1,10 +1,7 @@
-import React from 'react'
-
+import React from "react";
+import Footer from "./Footer";
 const Popular = () => {
-  return (
-    <div>
-    </div>
-  )
-}
+  return <></>;
+};
 
-export default Popular
+export default Popular;
