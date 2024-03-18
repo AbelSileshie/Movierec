@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Loader from "../common/Loader";
 import StarRating from "./StarRating";
+import "../../App.css"
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
 const KEY = "c39fabd7";
 const key = "cd03c49615cd326a66da1a5a7b3cc69e";
@@ -15,7 +16,6 @@ export default function MovieDetails({
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
   const [isHovered, setIsHovered] = React.useState(false);
-
   const countRef = useRef(0);
   useEffect(
     function () {
@@ -189,26 +189,29 @@ export default function MovieDetails({
         <>
           {" "}
 
-          <header>
-            <button className="btn-back" onClick={onCloseMovie}>
+            <button className="ml-44 mt-20 px-3 py-2 rounded-2xl bg-blue-900 shadow-2xl hover:bg-blue-500 mb-5" onClick={onCloseMovie}>
               &larr;
             </button>
-            <img src={poster} alt={`Poster of ${movie} movie`} />
+            <div className="grid grid-cols-3 ml-44 mr-44 my-15 gap-10">
+            <div className="">
+            
+            <img  className=" rounded-lg select-none " src={poster} alt={`Poster of ${movie} movie`} />
             <div className="details-overview">
-              {console.log("tit", title)}
-              <h2>{title || title2}</h2>
-              <p>
+              {console.log("tit", title)} 
+              <h2 className="pl-2 py-3">{title || title2}</h2>
+              <p className="pl-2 pb-2">
                 {released} &bull; {runtime}
               </p>
-              <p>{genre}</p>
-              <p>
+              <p className="pl-2 pb-1">{genre}</p>
+              <p className="pl-1">
                 <span>⭐️</span>
-                {imdbRating} IMDb rating
+                {imdbRating} IMDb rating 
               </p>
             </div>
-          </header>
-          <section>
-            <div className="rating">
+            </div>
+         
+          <div className="  col-span-2">
+            <div className="rating mb-4">
               {!isWatched ? (
                 <>
                   <StarRating
@@ -217,8 +220,8 @@ export default function MovieDetails({
                     onSetRating={setUserRating}
                   />
                   {userRating > 0 && (
-                    <button className="btn-add" onClick={handleAdd}>
-                      + Add to list
+                    <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg" onClick={handleAdd}>
+                      + Add to watchlist
                     </button>
                   )}
                 </>
@@ -228,12 +231,14 @@ export default function MovieDetails({
                 </p>
               )}
             </div>
-            <p>
-              <em>{plot}</em>
+            <p className=" text-base  font-med mb-3">
+             {plot}
             </p>
-            <p>Starring {actors}</p>
-            <p>Directed by {director}</p>
-          </section>
+            <p className="mb-2">Starring {actors}</p>
+            <p className="">Directed by {director}</p>
+            </div>
+         
+          </div>
         </>
       )}
     </div>
