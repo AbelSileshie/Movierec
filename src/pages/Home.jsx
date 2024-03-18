@@ -37,6 +37,7 @@ export default function Home({watchedList,watched,setWatched}) {
     setWatched((watched) => [...watched, movie]);
   }
 
+
  
 
   useEffect(
@@ -154,7 +155,7 @@ export default function Home({watchedList,watched,setWatched}) {
           <h2 className="text-3xl font-semibold mb-4 text-white">
             Top Rated Movies
           </h2>{" "}
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+          <div className="grid grid-cols-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 place-items-center gap-10 mt-20 ml-20 mr-20 ">
             {topRated.map((movie) => (
               <MovieCard
                 key={movie.id}
@@ -169,7 +170,7 @@ export default function Home({watchedList,watched,setWatched}) {
           <h2 className="text-3xl font-semibold mb-4 text-white">
             Popular TV Shows
           </h2>{" "}
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+          <div className="grid grid-cols-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 place-items-center gap-10 mt-20 ml-20 mr-20 ">
             {tvShows.map((movie) => (
               <MovieCard
                 key={movie.id}
