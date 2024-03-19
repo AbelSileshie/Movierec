@@ -161,20 +161,7 @@ function NavList() {
         color="white"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <NavLink to="Popular">Popular</NavLink>
-        </ListItem>
-      </Typography>
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="white"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          Trending
-        </ListItem>
+       
       </Typography>
       <NavListMenu />
     </List>

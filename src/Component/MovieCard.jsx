@@ -32,7 +32,6 @@ export default function MovieCard({ movie, onSelectMovie }) {
   //   );
   // }
 
-  console.log("mmm", movie);
   return (
     <div
       onClick={() => onSelectMovie(movie.id)}
