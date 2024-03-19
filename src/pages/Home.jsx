@@ -24,7 +24,7 @@ export default function Home({watchedList,watched,setWatched}) {
   const [selectedId, setSelectedId] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [tvShows, setTVShows] = useState([]);
-  console.log("id", selectedId);
+
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
@@ -36,9 +36,6 @@ export default function Home({watchedList,watched,setWatched}) {
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
   }
-
-
- 
 
   useEffect(
     function () {
@@ -52,7 +49,6 @@ export default function Home({watchedList,watched,setWatched}) {
   //
   //         ) : (
   //           <>
-             
   //           </>
   //         )}
   //       </Box>
@@ -70,18 +66,14 @@ export default function Home({watchedList,watched,setWatched}) {
             `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
           );
-
           if (!res.ok)
             throw new Error("Something went wrong with fetching movies");
-
           const data = await res.json();
           if (data.Response === "False") throw new Error("Movie not found");
-
           setMovies(data.Search);
           setError("");
         } catch (err) {
           if (err.name !== "AbortError") {
-            console.log(err.message);
             setError(err.message);
           }
         } finally {
@@ -111,7 +103,6 @@ export default function Home({watchedList,watched,setWatched}) {
       );
       const data = await res.json();
       setTopRated(data.results);
-      console.log("rated", data.results);
     }
 
     async function getPopularTVShows() {
@@ -120,7 +111,6 @@ export default function Home({watchedList,watched,setWatched}) {
       );
       const data = await res.json();
       setTVShows(data.results);
-      console.log("popular", data.results);
     }
 
     getTopRatedMovies();
@@ -140,8 +130,6 @@ export default function Home({watchedList,watched,setWatched}) {
     return (
       <Box>
          <Header query={query} setQuery={setQuery} />
-
-        
         <Main>
           <Box>
             {isLoading && <Loader />}

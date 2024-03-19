@@ -4,7 +4,6 @@ import { Trash } from "phosphor-react";
 import React from "react";
 
 export default function WatchedMovie({ movie, onDeleteWatched }) {
-  console.log("run", movie);
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md">
       <img

@@ -117,7 +117,6 @@ export default function MovieDetails({
       userRating: userRating ? userRating : vote_average,
       countRatingDecisions: countRef.current,
     };
-    console.log("title", title);
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
@@ -197,7 +196,6 @@ export default function MovieDetails({
             
             <img  className=" rounded-lg select-none " src={poster} alt={`Poster of ${movie} movie`} />
             <div className="details-overview">
-              {console.log("tit", title)} 
               <h2 className="pl-2 py-3">{title || title2}</h2>
               <p className="pl-2 pb-2">
                 {released} &bull; {runtime}

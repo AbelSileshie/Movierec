@@ -23,7 +23,14 @@ import Home from "./pages/Home";
 import Watched from "./pages/Watched";
 const App = () => {
   const [favorite, setFavorite] = useState([]);
+  const [query, setQuery] = useState("");
+
   const [favoriteTV, setFavoriteTV] = useState([]);
+  const [watchedList, setWatchedList] = useState(false);
+  const [watched, setWatched] = useState(() => {
+    const storedValue = localStorage.getItem("watched");
+    return JSON.parse(storedValue) || [];
+  });
   const ItemClick = (RESULT) => {
     if (!favorite.some((item) => item.title === RESULT.title)) {
       const updateItem = [...favorite, RESULT];
@@ -48,11 +55,7 @@ const App = () => {
     );
     setFavoriteTV(updatedFavorite);
   };
-  const [watchedList, setWatchedList] = useState(false);
-  const [watched, setWatched] = useState(() => {
-    const storedValue = localStorage.getItem("watched");
-    return JSON.parse(storedValue) || [];
-  });
+
 
   return (
     <>
@@ -67,6 +70,8 @@ const App = () => {
               watchedList={watchedList}
               watched={watched}
               setWatched={setWatched}
+              query={query} 
+              setQuery={setQuery} 
             />
           }
         />
