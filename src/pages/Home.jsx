@@ -14,9 +14,12 @@ import ErrorMessage from "../Component/common/ErrorMessage";
 import WatchedSummary from "../Component/watched/WatchedSummary";
 import WatchedMoviesList from "../Component/watched/WatchedMoviesList";
 import Header from "../Component/Header";
+import { Button, Carousel } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
+import { PlayCircleIcon } from "@heroicons/react/16/solid";
 const KEY = "c39fabd7";
 
-export default function Home({watchedList,watched,setWatched}) {
+export default function Home({ watchedList, watched, setWatched }) {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +27,7 @@ export default function Home({watchedList,watched,setWatched}) {
   const [selectedId, setSelectedId] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [tvShows, setTVShows] = useState([]);
+  const [Herocard, setHerocard] = useState([]);
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -52,7 +56,11 @@ export default function Home({watchedList,watched,setWatched}) {
   //           </>
   //         )}
   //       </Box>
+  const [isHovered, setIshovered] = useState(false);
 
+  const handlehover = () => {
+    setIshovered(!isHovered);
+  };
   useEffect(
     function () {
       const controller = new AbortController();
@@ -112,9 +120,17 @@ export default function Home({watchedList,watched,setWatched}) {
       const data = await res.json();
       setTVShows(data.results);
     }
+    async function getHerocard() {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=${key}`
+      );
+      const data = await res.json();
+      setHerocard(data.results);
+    }
 
     getTopRatedMovies();
     getPopularTVShows();
+    getHerocard();
   }, []);
 
   if (selectedId) {
@@ -128,18 +144,101 @@ export default function Home({watchedList,watched,setWatched}) {
     );
   } else {
     return (
-      <Box>
-         <Header query={query} setQuery={setQuery} />
+      <>
+        <Header query={query} setQuery={setQuery} />
         <Main>
-          <Box>
+          <>
             {isLoading && <Loader />}
             {!isLoading && !error && (
               <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
             )}
             {error && <ErrorMessage message={error} />}
-          </Box>
+          </>
+          <Carousel className="rounded-xl">
+            {Herocard.map((movie) => (
+              <>
+                <div
+                  className="relative rounded-xl overflow-hidden"
+                  key={movie.id}
+                  style={{
+                    aspectRatio: "auto",
+                    height: "100vh",
+                    width: "100vw",
+                  }}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                    alt={movie.title}
+                    className="relative w-full h-full object-cover"
+                  />
+                  <div
+                    className="absolute inset-0 grid h-full w-full bottom-0 sm:pla56ce-items-center"
+                    onMouseEnter={handlehover}
+                    onMouseLeave={handlehover}
+                    style={{
+                      backgroundColor: isHovered ? "rgba(0,0,0,0.5)" : "",
+                    }}
+                  >
+                    {isHovered ? (
+                      <>
+                        <div className="w-3/4 text-center md:w-2/4 absolute bottom-28 md:bottom-20  left-16">
+                          <Typography
+                            variant="h1"
+                            color="white"
+                            className="text-3xl md:text-4xl lg:text-5xl text-left bg-opacity-50"
+                          >
+                            <p>
+                              {movie.title}
+                              (IMDB
+                              {movie.vote_average.toFixed(1)})
+                            </p>
+                          </Typography>
+                          <Typography
+                            variant="lead"
+                            color="white"
+                            className="mb-5 opacity-80 text-justify"
+                          >
+                            {movie.overview}
+                          </Typography>
+                          <div className="absolute grid-cols-2">
+                            <Button
+                              size="lg"
+                              color="black"
+                              className=" bg-transparent"
+                            >
+                              <PlayCircleIcon
+                                size="sm"
+                                color="white"
+                                className=" h-10"
+                              />
+                            </Button>
+                            <Button
+                              size="lg"
+                              color="white"
+                              variant="text"
+                              onClick={() => handleSelect(movie.id)}
+                            >
+                              More Details
+                            </Button>
+                            <div className="absolute mt-0 left-0 grid-cols-2">
+                              {/* {data.movie.geners.map((movie) => (
+                            <></>
+                          ))} */}
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+              </>
+            ))}
+          </Carousel>
         </Main>
-        <div className="container mx-auto px-4 py-8">
+
+        <div className="container mx-auto">
           <h2 className="text-3xl font-semibold mb-4 text-white">
             Top Rated Movies
           </h2>{" "}
@@ -168,9 +267,8 @@ export default function Home({watchedList,watched,setWatched}) {
               />
             ))}
           </div>
-
         </div>
-      </Box>
+      </>
     );
   }
 }

@@ -21,6 +21,7 @@ import Family from "./Component/genere/Family";
 import Sci_Fi from "./Component/genere/Sci_Fi";
 import Home from "./pages/Home";
 import Watched from "./pages/Watched";
+import Hero from "./Component/Hero";
 const App = () => {
   const [favorite, setFavorite] = useState([]);
   const [query, setQuery] = useState("");
@@ -56,12 +57,9 @@ const App = () => {
     setFavoriteTV(updatedFavorite);
   };
 
-
   return (
     <>
-      <main>
-        <Header setWatchedList={setWatchedList} />
-      </main>
+      <Header setWatchedList={setWatchedList} />
       <Routes>
         <Route
           path="/"
@@ -70,13 +68,16 @@ const App = () => {
               watchedList={watchedList}
               watched={watched}
               setWatched={setWatched}
-              query={query} 
-              setQuery={setQuery} 
+              query={query}
+              setQuery={setQuery}
             />
           }
         />
         <Route path="Popular" element={<Popular />} />
-      <Route path="watched" element={<Watched watched={watched} setWatched={setWatched} />} />
+        <Route
+          path="watched"
+          element={<Watched watched={watched} setWatched={setWatched} />}
+        />
         <Route path="Login" element={<Login />} />
         <Route
           path="Fav"
